@@ -1,0 +1,52 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db{
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+enum ApplicationStatus {
+    PENDING
+    SHORTLISTED
+    ACCEPTED
+    REJECTED
+}
+
+enu InternshipTrack {
+    FRONTEND_DEVELOPMENT
+    BACKEND_DEVELOPMENT
+    MOBILE_DEVELOPMENT
+    UI_UX_DESIGN
+    DATA_ANALYTICS
+}
+
+modle Admin {
+    id        String   @id @default(uuid())
+    email     String   @unique
+    password  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("admins")
+}
+
+model Applicant {
+    id        String    @id @default(uuid())
+    fullName  String
+    email     String     @unique
+    phone     String?
+    track     InternshipTrack
+    status    ApplicationStatus @default(PENDING)
+    notes     String?
+    createdAt DateTime          @default(now())
+    updatedAt DateTime          @updatedAt
+    deletedAt DateTime?
+
+    @@index([status])
+    @@index([track])
+    @@index([deletedAt])
+
+    @@map("applicants")
+}
