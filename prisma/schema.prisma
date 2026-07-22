@@ -34,7 +34,8 @@ model Admin {
 
 model Applicant {
     id        String    @id @default(uuid())
-    fullName  String
+    firstName  String
+    lastName   String
     email     String     @unique
     phone     String?
     track     InternshipTrack
