@@ -14,7 +14,7 @@ enum ApplicationStatus {
     REJECTED
 }
 
-enu InternshipTrack {
+enum InternshipTrack {
     FRONTEND_DEVELOPMENT
     BACKEND_DEVELOPMENT
     MOBILE_DEVELOPMENT
@@ -22,7 +22,7 @@ enu InternshipTrack {
     DATA_ANALYTICS
 }
 
-modle Admin {
+model Admin {
     id        String   @id @default(uuid())
     email     String   @unique
     password  String
