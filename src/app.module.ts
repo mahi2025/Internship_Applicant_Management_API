@@ -20,7 +20,7 @@ import { AuthController } from './auth/auth.controller';
     PrismaModule,
     AuthModule,
   ],
-  controllers: [HealthController, AuthController],
+  controllers: [HealthController],
 
   providers: [
     {
