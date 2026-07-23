@@ -7,6 +7,7 @@ import { HealthController } from './health/health.controller';
 import { PrismaModule } from '../prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { AuthController } from './auth/auth.controller';
 
 
 @Module({
@@ -19,7 +20,8 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     PrismaModule,
     AuthModule,
   ],
-  controllers: [HealthController],
+  controllers: [HealthController, AuthController],
+
   providers: [
     {
       provide: APP_GUARD,
@@ -27,5 +29,4 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     },
   ],
 })
-
 export class AppModule {}
