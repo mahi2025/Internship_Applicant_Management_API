@@ -8,11 +8,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApplicantsService } from './applicants.service';
 import { ApplicantDto } from './dto/applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { Public } from '../auth/decorators/public.decorator';
+import { QueryApplicantDto } from './dto/query-applicant.dto';
 
 @Controller('applicants')
 export class ApplicantsController {
@@ -25,8 +27,8 @@ export class ApplicantsController {
 
   @Public()
   @Get()
-  findAll() {
-    return this.applicantsService.findAll();
+  findAll(@Query() query: QueryApplicantDto) {
+    return this.applicantsService.findAll(query);
   }
 
   @Public()
