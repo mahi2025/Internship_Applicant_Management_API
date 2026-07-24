@@ -8,6 +8,7 @@ import { PrismaModule } from '../prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { ApplicantsModule } from './applicants/applicants.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { ApplicantsModule } from './applicants/applicants.module';
     PrismaModule,
     AuthModule,
     ApplicantsModule,
+    DashboardModule,
   ],
   controllers: [HealthController],
 
