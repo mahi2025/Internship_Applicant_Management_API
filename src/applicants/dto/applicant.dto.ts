@@ -9,23 +9,31 @@ import {
   Length,
 } from 'class-validator';
 
-export class CreateApplicantDto {
-  @ApiProperty({ 
-        example: 'Mahlet Masresha'
-    })
+export class ApplicantDto {
+  @ApiProperty({
+    example: 'Mahlet',
+  })
   @IsString()
   @Length(2, 100)
-  fullName!: string;
+  firstName!: string;
 
-  @ApiProperty({ 
-        example: 'mahimasre@example.com' 
-    })
+  @ApiProperty({
+    example: 'Masresha',
+  })
+  @IsString()
+  @Length(2, 100)
+  lastName!: string;
+
+  @ApiProperty({
+    example: 'mahimasre@example.com',
+  })
   @IsEmail()
   email!: string;
 
-  @ApiProperty({ 
-        example: '+2519001100', required: false 
-    })
+  @ApiProperty({
+    example: '+2519001100',
+    required: false,
+  })
   @IsOptional()
   @IsPhoneNumber()
   phone?: string;
