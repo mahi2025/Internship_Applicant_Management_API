@@ -1,5 +1,5 @@
 node_modules
 docker-compose.yml
 .env
-.env.docker
+.env.test
 README.md

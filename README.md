@@ -10,7 +10,7 @@ Internship Applicant Management API that lets an administrator manage internship
   
 ## Technologies
 
-- NestJS, TypeScript, Prisma, PostgreSQL
+- NestJS, TypeScript, Prisma and PostgreSQL
 
 ## Installation 
 
@@ -22,12 +22,7 @@ npx prisma migrate dev
 npx prisma db seed
 npm run start:dev
 ```
-
-## Full Docker set up
-
-\`\`\`bash
-docker compose up --build
-\`\`\`
+`
 
 ## Migrations & Seeding
 
@@ -56,7 +51,7 @@ npm run test:e2e   # integration tests (requires internship_db_test)
 
 ## API Documentation
 
-Swagger UI: http://localhost:3000/api/docs
+Swagger UI: http://localhost:3000/docs
 
 ## Folder Structure
 
@@ -76,12 +71,12 @@ Swagger UI: http://localhost:3000/api/docs
 │── dashboard/
 │   └── dashboard.*.ts
 
-├── common/
-│       ├── http-exception.filter.ts
-│   ├── config/
+├──|──common/
+│     ├── http-exception.filter.ts
+│  ├──config/
 │       ├── config.ts
 │       ├── validation.schema.ts
-│    ├── prisma/
+│  ├──prisma/
 │       ├── prisma.module.ts
 │       ├── prisma.service.ts
 └── |
@@ -93,8 +88,17 @@ Swagger UI: http://localhost:3000/api/docs
 
 - Applicant email unique
 - Notes ≤ 1000 characters
-- Status transitions: Pending → {Shortlisted, Rejected}; Shortlisted →
-  {Accepted, Rejected}; Accepted/Rejected are terminal
-- Soft delete only; deleted applicants excluded from all listings and dashboard
+- Status transitions 
+- deleted applicants excluded from all listings and dashboard
 
+## Assumptions
 
+- Email is immutable after applicant creation
+- Accepted/Rejected are terminal states (no reverse transitions)
+- Internship tracks are a fixed enum of 5 values 
+
+## Known Limitations
+
+- No refresh token / logout blocklist (stateless JWT only, 1h expiry)
+- No role-based access beyond a single Admin type
+- No rate limiting on login endpoint 
