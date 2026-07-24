@@ -31,13 +31,11 @@ export class ApplicantsController {
     return this.applicantsService.create(dto);
   }
 
-  @Public()
   @Get()
   findAll(@Query() query: QueryApplicantDto) {
     return this.applicantsService.findAll(query);
   }
 
-  @Public()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.applicantsService.findOne(id);

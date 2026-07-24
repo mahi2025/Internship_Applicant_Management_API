@@ -1,33 +1,31 @@
-import { 
-  Injectable, 
+import {
+  Injectable,
   NotFoundException,
-  UnprocessableEntityException
- } from '@nestjs/common';
-import { PrismaService } from '../../prisma/prisma.service';
+  UnprocessableEntityException,
+} from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 import { ApplicantDto } from './dto/applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { Prisma, ApplicationStatus } from '@prisma/client';
 import { QueryApplicantDto } from './dto/query-applicant.dto';
-import { UpdateStatusDto
- } from './dto/update-status.dto';
+import { UpdateStatusDto } from './dto/update-status.dto';
 import { UpdateNotesDto } from './dto/update-notes.dto';
 
 @Injectable()
 export class ApplicantsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  private readonly notDeleted: Prisma.ApplicantWhereInput ={       
-    deletedAt: null 
+  private readonly notDeleted: Prisma.ApplicantWhereInput = {
+    deletedAt: null,
   };
 
   async create(dto: ApplicantDto) {
-    return this.prisma.applicant.create({ 
-        data: dto
-     });
+    return this.prisma.applicant.create({
+      data: dto,
+    });
   }
 
   async findAll(query: QueryApplicantDto) {
-    
     const { search, status, track, sortBy, sortOrder, page, limit } = query;
 
     const where: Prisma.ApplicantWhereInput = {
@@ -58,9 +56,9 @@ export class ApplicantsService {
       }),
     };
 
-    let orderBy: 
-    Prisma.ApplicantOrderByWithRelationInput 
-    | Prisma.ApplicantOrderByWithRelationInput[];
+    let orderBy:
+      | Prisma.ApplicantOrderByWithRelationInput
+      | Prisma.ApplicantOrderByWithRelationInput[];
 
     if (sortBy === 'fullName') {
       orderBy = [
@@ -113,7 +111,6 @@ export class ApplicantsService {
   }
 
   async update(id: string, dto: UpdateApplicantDto) {
-    
     await this.findOne(id);
 
     return this.prisma.applicant.update({
@@ -131,7 +128,10 @@ export class ApplicantsService {
     });
   }
 
-  private readonly allowedTransitions: Record<ApplicationStatus, ApplicationStatus[]> = {
+  private readonly allowedTransitions: Record<
+    ApplicationStatus,
+    ApplicationStatus[]
+  > = {
     [ApplicationStatus.PENDING]: [
       ApplicationStatus.SHORTLISTED,
       ApplicationStatus.REJECTED,
@@ -140,7 +140,7 @@ export class ApplicantsService {
       ApplicationStatus.ACCEPTED,
       ApplicationStatus.REJECTED,
     ],
-    [ApplicationStatus.ACCEPTED]: [], 
+    [ApplicationStatus.ACCEPTED]: [],
     [ApplicationStatus.REJECTED]: [],
   };
 

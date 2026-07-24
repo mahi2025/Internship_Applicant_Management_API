@@ -4,12 +4,11 @@ import { ConfigModule } from '@nestjs/config';
 import config from './config/config';
 import { validationSchema } from './config/validation.schema';
 import { HealthController } from './health/health.controller';
-import { PrismaModule } from '../prisma/prisma.module';
+import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { ApplicantsModule } from './applicants/applicants.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-
 
 @Module({
   imports: [

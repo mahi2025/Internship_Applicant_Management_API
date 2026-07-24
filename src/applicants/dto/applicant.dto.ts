@@ -14,14 +14,14 @@ export class ApplicantDto {
     example: 'Mahlet',
   })
   @IsString()
-  @Length(2, 100)
+  @Length(2, 20)
   firstName!: string;
 
   @ApiProperty({
     example: 'Masresha',
   })
   @IsString()
-  @Length(2, 100)
+  @Length(2, 20)
   lastName!: string;
 
   @ApiProperty({
