@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { HttpExceptionFilter } from './common/http-exception.filter';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +21,25 @@ async function bootstrap() {
   app.setGlobalPrefix('api', {
     exclude: [],
   });
+
+  const config = new DocumentBuilder()
+    .setTitle('Internship Applicant Management API')
+    .setDescription('API documentation for Internship applications Management')
+    .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'JWT',
+      in: 'header',
+    },
+    'access-token',)
+    .build();
+
+     const document = SwaggerModule.createDocument(app, config);
+
+     SwaggerModule.setup('docs', app, document);
+     
   const configService = app.get(ConfigService);
 
   const port = configService.get<number>('port') ?? 3000;
