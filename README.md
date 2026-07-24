@@ -55,7 +55,9 @@ Swagger UI: http://localhost:3000/docs
 
 ## Folder Structure
 
-│src/
+
+
+src/
 
     ├── auth/
 
@@ -75,16 +77,15 @@ Swagger UI: http://localhost:3000/docs
 
         ├── applicant.*.ts
 
-
     ├── dashboard/
 
         ├── dashboard.*.ts
 
-    ├──common/
+    ├── common/
 
         ├── http-exception.filter.ts
 
-    ├──config/
+    ├── config/
 
         ├── config.ts
 
@@ -96,9 +97,9 @@ Swagger UI: http://localhost:3000/docs
 
         ├── prisma.service.ts
 
-└── ├── app.module.ts
+    ├── app.module.ts
 
-└── ├──  main.ts
+    ├──  main.ts
 
 
 ## Business Rules
