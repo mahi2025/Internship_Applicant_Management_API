@@ -26,7 +26,16 @@ async function bootstrap() {
     .setTitle('Internship Applicant Management API')
     .setDescription('API documentation for Internship applications Management')
     .setVersion('1.0')
-    .addBearerAuth()
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        in: 'header',
+      },
+      'access-token',
+    )
     .build();
 
      const document = SwaggerModule.createDocument(app, config);

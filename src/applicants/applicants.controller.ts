@@ -17,8 +17,12 @@ import { Public } from '../auth/decorators/public.decorator';
 import { QueryApplicantDto } from './dto/query-applicant.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
 import { UpdateNotesDto } from './dto/update-notes.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('applicants')
+@ApiBearerAuth('access-token')
 @Controller('applicants')
+
 export class ApplicantsController {
   constructor(private readonly applicantsService: ApplicantsService) {}
 
