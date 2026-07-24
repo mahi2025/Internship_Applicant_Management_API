@@ -57,49 +57,48 @@ Swagger UI: http://localhost:3000/docs
 
 │src/
 
-├── auth/
+    ├── auth/
 
-│   ├── decorators/
-
-│   ├── dto/
-
-│   └── guards/
-
-│   └── strategies/
-
-│   └── auth.*.ts
-
-├── applicant/
-
-│   ├── dto/
-
-│   └── applicant.*.ts
-
-│ 
-│── dashboard/
-
-│   └── dashboard.*.ts
-
-├──|──common/
-
-│     ├── http-exception.filter.ts
-
-│  ├──config/
-
-│       ├── config.ts
-
-│       ├── validation.schema.ts
-
-│  ├──prisma/
-
-│       ├── prisma.module.ts
-
-│       ├── prisma.service.ts
-
-└── |
-    ├── app.module.ts
+        ├── decorators/       
+        
+        ├── dto/
     
-    └── main.ts
+        ├── guards/
+
+        ├── strategies/
+
+        ├── auth.*.ts
+
+    ├── applicant/
+
+        ├── dto/
+
+        ├── applicant.*.ts
+
+
+    ├── dashboard/
+
+        ├── dashboard.*.ts
+
+    ├──common/
+
+        ├── http-exception.filter.ts
+
+    ├──config/
+
+        ├── config.ts
+
+        ├── validation.schema.ts
+
+    ├──prisma/
+
+        ├── prisma.module.ts
+
+        ├── prisma.service.ts
+
+└── ├── app.module.ts
+
+└── ├──  main.ts
 
 
 ## Business Rules
