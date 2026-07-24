@@ -113,8 +113,8 @@ Swagger UI: http://localhost:3000/docs
 - Accepted/Rejected are terminal states (no reverse transitions)
 - Internship tracks are a fixed enum of 5 values 
 
-## Known Limitations
+## Limitations
 
-- No refresh token / logout blocklist (stateless JWT only, 1h expiry)
+- No refresh token (stateless JWT only, 1h expiry)
 - No role-based access beyond a single Admin type
 - No rate limiting on login endpoint 
