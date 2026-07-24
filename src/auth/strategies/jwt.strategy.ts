@@ -28,8 +28,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     const admin = await this.authService.validateAdminById(payload.sub);
     
-    console.log("admin", admin);
-
     return { 
       id: admin.id, 
       email: admin.email 
