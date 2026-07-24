@@ -1,9 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { 
+  Injectable, 
+  NotFoundException,
+  UnprocessableEntityException
+ } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ApplicantDto } from './dto/applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
-import { Prisma } from '@prisma/client';
+import { Prisma, ApplicationStatus } from '@prisma/client';
 import { QueryApplicantDto } from './dto/query-applicant.dto';
+import { UpdateStatusDto
+ } from './dto/update-status.dto';
+import { UpdateNotesDto } from './dto/update-notes.dto';
 
 @Injectable()
 export class ApplicantsService {
@@ -121,6 +128,49 @@ export class ApplicantsService {
     return this.prisma.applicant.update({
       where: { id },
       data: { deletedAt: new Date() },
+    });
+  }
+
+  private readonly allowedTransitions: Record<ApplicationStatus, ApplicationStatus[]> = {
+    [ApplicationStatus.PENDING]: [
+      ApplicationStatus.SHORTLISTED,
+      ApplicationStatus.REJECTED,
+    ],
+    [ApplicationStatus.SHORTLISTED]: [
+      ApplicationStatus.ACCEPTED,
+      ApplicationStatus.REJECTED,
+    ],
+    [ApplicationStatus.ACCEPTED]: [], 
+    [ApplicationStatus.REJECTED]: [],
+  };
+
+  async updateStatus(id: string, dto: UpdateStatusDto) {
+    const applicant = await this.findOne(id);
+
+    if (applicant.status === dto.status) {
+      return applicant;
+    }
+
+    const allowedNextStatuses = this.allowedTransitions[applicant.status];
+
+    if (!allowedNextStatuses.includes(dto.status)) {
+      throw new UnprocessableEntityException(
+        `Cannot change status from "${applicant.status}" to "${dto.status}"`,
+      );
+    }
+
+    return this.prisma.applicant.update({
+      where: { id },
+      data: { status: dto.status },
+    });
+  }
+
+  async updateNotes(id: string, dto: UpdateNotesDto) {
+    await this.findOne(id);
+
+    return this.prisma.applicant.update({
+      where: { id },
+      data: { notes: dto.notes },
     });
   }
 }
