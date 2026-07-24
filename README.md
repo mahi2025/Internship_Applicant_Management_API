@@ -59,7 +59,9 @@ Swagger UI: http://localhost:3000/docs
 
 
 
-src/    ├── auth/
+├──src/    
+
+        ├── auth/
 
             ├── decorators/       
             
