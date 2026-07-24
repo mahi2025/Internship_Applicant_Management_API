@@ -15,6 +15,8 @@ import { ApplicantDto } from './dto/applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { Public } from '../auth/decorators/public.decorator';
 import { QueryApplicantDto } from './dto/query-applicant.dto';
+import { UpdateStatusDto } from './dto/update-status.dto';
+import { UpdateNotesDto } from './dto/update-notes.dto';
 
 @Controller('applicants')
 export class ApplicantsController {
@@ -46,5 +48,15 @@ export class ApplicantsController {
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
     return this.applicantsService.softDelete(id);
+  }
+
+  @Patch(':id/status')
+  updateStatus(@Param('id') id: string, @Body() dto: UpdateStatusDto) {
+    return this.applicantsService.updateStatus(id, dto);
+  }
+
+  @Patch(':id/notes')
+  updateNotes(@Param('id') id: string, @Body() dto: UpdateNotesDto) {
+    return this.applicantsService.updateNotes(id, dto);
   }
 }
