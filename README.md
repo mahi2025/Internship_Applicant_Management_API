@@ -22,15 +22,15 @@ npx prisma migrate dev
 npx prisma db seed
 npm run start:dev
 ```
-`
 
 ## Migrations & Seeding
 
-\`\`\`bash
-npx prisma migrate dev --name <name>  
-npx prisma db seed                   
-\`\`\`
+```bash
 
+npx prisma migrate dev --name <name>  
+
+npx prisma db seed                   
+```
 
 ## Authentication
 
@@ -38,16 +38,16 @@ Default seeded admin:
  `admin@gmail.com` 
 / `AdminPassword`
 
-POST /api/auth/login → returns JWT bearer token
+POST /api/auth/login - returns JWT bearer token
 
 Include as `Authorization: Bearer <token>` on all other requests.
 
 ## Testing
 
-\`\`\`bash
+```bash
 npm run test       # unit tests
 npm run test:e2e   # integration tests (requires internship_db_test)
-\`\`\`
+```
 
 ## API Documentation
 
@@ -56,31 +56,49 @@ Swagger UI: http://localhost:3000/docs
 ## Folder Structure
 
 │src/
-│
+
 ├── auth/
+
 │   ├── decorators/
+
 │   ├── dto/
+
 │   └── guards/
+
 │   └── strategies/
+
 │   └── auth.*.ts
-│
+
 ├── applicant/
+
 │   ├── dto/
+
 │   └── applicant.*.ts
+
 │ 
 │── dashboard/
+
 │   └── dashboard.*.ts
 
 ├──|──common/
+
 │     ├── http-exception.filter.ts
+
 │  ├──config/
+
 │       ├── config.ts
+
 │       ├── validation.schema.ts
+
 │  ├──prisma/
+
 │       ├── prisma.module.ts
+
 │       ├── prisma.service.ts
+
 └── |
     ├── app.module.ts
+    
     └── main.ts
 
 
