@@ -55,7 +55,8 @@ Swagger UI: http://localhost:3000/docs
 
 ## Folder Structure
 
-├── src/    
+    ├── src/  
+
         ├── auth/
 
             ├── decorators/       
